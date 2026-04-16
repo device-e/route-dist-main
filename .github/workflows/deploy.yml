@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24          # 使用 Node.js 20 版本（Vite 要求 20.19+）
+          node-version: 20          # 使用 Node.js 20 版本（Vite 要求 20.19+）
           cache: 'npm'               # 缓存 npm 依赖，加速后续构建
 
       # 步骤3：安装依赖（使用 package-lock.json 确保一致性）
@@ -40,10 +40,6 @@ jobs:
       # 步骤4：构建项目（执行 package.json 中的 build 脚本）
       - name: Build
         run: npm run build
-      
-      - name: Add 404 redirect for SPA
-        run: cp dist/index.html dist/404.html   # 解决路由刷新404问题
-
 
       # 步骤5：上传构建产物作为 artifact（供后续部署作业使用）
       - name: Upload artifact
